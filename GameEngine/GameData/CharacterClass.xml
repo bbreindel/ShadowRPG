@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <CharacterClasses RootImagePath="/Images/CharacterClasses/">
-  <Class ID="1" Name="Warrior"  ImageName="Warrior.png">
+  <Class ID="1" Name="Warrior"  ImageName="Warrior.jpg">
   	<Pro><![CDATA[This is a Pro, Ugly Warrior]]></Pro>
 	<Con><![CDATA[This is a Con Human]]></Con>
     <Description><![CDATA[You are a Bland Human]]></Description>
@@ -10,7 +10,7 @@
 	<Con><![CDATA[This is a Con Elf]]></Con>
     <Description><![CDATA[You are a Skinny Elf]]></Description>
   </Class>
-  <Class ID="3" Name="Mage"  ImageName="Mage.gif">
+  <Class ID="3" Name="Mage"  ImageName="Mage.jpg">
   	<Pro><![CDATA[This is a Pro, Ugly Mage]]></Pro>
 	<Con><![CDATA[This is a Con Dwarf]]></Con>
     <Description><![CDATA[You are a Fat Dwarf]]></Description>
