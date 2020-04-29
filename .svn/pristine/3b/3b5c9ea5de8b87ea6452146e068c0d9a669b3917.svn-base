@@ -1,0 +1,392 @@
+﻿using GameEngine.EventArgs;
+using GameEngine.GameModels;
+using GameEngine.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+
+namespace FIRSTRPGUI
+{
+    /// <summary>
+    /// Interaction logic for GameWindow.xaml
+    /// </summary>
+    public partial class GameWindow : Window
+    {
+        private readonly GameSession _gameSession = new GameSession();
+        readonly MediaPlayer mediaPlayer = new MediaPlayer();
+        private readonly Dictionary<Key, Action> _userInputActions =
+    new Dictionary<Key, Action>();
+        public GameWindow()
+        {
+            InitializeComponent();
+            Music_onLoad();
+            DataContext = _gameSession;
+            InitializeUserInputActions();
+
+            _gameSession.OnMessageRaised += OnGameMessageRaised;
+
+            RaceRadioButtonSelect.Visibility = Visibility.Collapsed;
+            MainGameWindow.Visibility = Visibility.Collapsed;
+            AttributePointAssignment.Visibility = Visibility.Collapsed;
+            CharacterCreateWindow.Visibility = Visibility.Collapsed;
+
+        }
+        private void OnClick_MoveNorth(object sender, RoutedEventArgs e)
+        {
+            _gameSession.MoveNorth();
+        }
+
+        private void OnClick_MoveWest(object sender, RoutedEventArgs e)
+        {
+            _gameSession.MoveWest();
+        }
+
+        private void OnClick_MoveEast(object sender, RoutedEventArgs e)
+        {
+            _gameSession.MoveEast();
+        }
+
+        private void OnClick_MoveSouth(object sender, RoutedEventArgs e)
+        {
+            _gameSession.MoveSouth();
+        }
+
+        private void OnClick_AttackMonster(object sender, RoutedEventArgs e)
+        {
+            _gameSession.AttackCurrentMonster();
+        }
+
+        private void OnClick_UseCurrentConsumable(object sender, RoutedEventArgs e)
+        {
+            _gameSession.UseCurrentConsumable();
+        }
+
+        private void OnGameMessageRaised(object sender, GameMessageEventArgs e)
+        {
+            GameMessages.Document.Blocks.Add(new Paragraph(new Run(e.Message)));
+            GameMessages.ScrollToEnd();
+        }
+
+        private void OnClick_DisplayTradeScreen(object sender, RoutedEventArgs e)
+        {
+            if (_gameSession.CurrentTrader != null)
+            {
+                TradeScreen tradeScreen = new TradeScreen
+                {
+                    Owner = this,
+                    DataContext = _gameSession
+                };
+                tradeScreen.ShowDialog();
+            }
+        }
+
+        private void OnClick_Craft(object sender, RoutedEventArgs e)
+        {
+            Recipe recipe = ((FrameworkElement)sender).DataContext as Recipe;
+            _gameSession.CraftItemUsing(recipe);
+        }
+
+        private void InitializeUserInputActions()
+        {
+            _userInputActions.Add(Key.W, () => _gameSession.MoveNorth());
+            _userInputActions.Add(Key.A, () => _gameSession.MoveWest());
+            _userInputActions.Add(Key.S, () => _gameSession.MoveSouth());
+            _userInputActions.Add(Key.D, () => _gameSession.MoveEast());
+            _userInputActions.Add(Key.Z, () => _gameSession.AttackCurrentMonster());
+            _userInputActions.Add(Key.C, () => _gameSession.UseCurrentConsumable());
+            _userInputActions.Add(Key.I, () => SetTabFocusTo("InventoryTabItem"));
+            _userInputActions.Add(Key.Q, () => SetTabFocusTo("QuestsTabItem"));
+            _userInputActions.Add(Key.R, () => SetTabFocusTo("RecipesTabItem"));
+            _userInputActions.Add(Key.E, () => SetTabFocusTo("EquippedTabItem"));
+            _userInputActions.Add(Key.T, () => OnClick_DisplayTradeScreen(this, new RoutedEventArgs()));
+        }
+
+        private void GameWindow_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (_userInputActions.ContainsKey(e.Key))
+            {
+                _userInputActions[e.Key].Invoke();
+            }
+        }
+
+        private void SetTabFocusTo(string tabName)
+        {
+            foreach (object item in PlayerDataTabControl.Items)
+            {
+                if (item is TabItem tabItem)
+                {
+                    if (tabItem.Name == tabName)
+                    {
+                        tabItem.IsSelected = true;
+                        return;
+                    }
+                }
+            }
+        }
+        private void OnClick_DisplayCreateCharacterWindow(object sender, RoutedEventArgs e)
+        {
+            mediaPlayer.Open(new Uri("file:///C:/Users/Bill/Projects/FIRSTRPG/FIRSTRPG/GameEngine/Music/Tina.MP3"));
+            mediaPlayer.Play();
+            StartGameWindow.Visibility = Visibility.Collapsed;
+            CharacterCreateWindow.Visibility = Visibility.Visible;
+
+        }
+
+        private void OnClick_CloseStartupWindow(object sender, RoutedEventArgs e)
+        {
+
+            Close();
+
+        }
+
+        private void Music_onLoad()
+        {
+
+            mediaPlayer.Open(new Uri("file:///C:/Users/Bill/Projects/FIRSTRPG/FIRSTRPG/GameEngine/Music/Opening.MP3"));
+            mediaPlayer.Play();
+
+        }
+        private void OnClick_DisplayMainWindow(object sender, RoutedEventArgs e)
+        {
+
+            AttributePointAssignment.Visibility = Visibility.Collapsed;
+            MainGameWindow.Visibility = Visibility.Visible;
+        }
+
+
+        private void OnClick_CloseWindow(object sender, RoutedEventArgs e)
+        {
+
+            Close();
+
+        }
+
+
+
+        private void OnClick_addStr(object sender, RoutedEventArgs e)
+        {
+            if (_gameSession.CurrentPlayer.AttributePoints != 0)
+            {
+                _gameSession.CurrentPlayer.Strength++;
+                _gameSession.CurrentPlayer.AttributePoints--;
+            }
+        }
+        private void OnClick_addDex(object sender, RoutedEventArgs e)
+        {
+            if (_gameSession.CurrentPlayer.AttributePoints != 0)
+            {
+                _gameSession.CurrentPlayer.Dexterity++;
+                _gameSession.CurrentPlayer.AttributePoints--;
+            }
+        }
+        private void OnClick_addWis(object sender, RoutedEventArgs e)
+        {
+            if (_gameSession.CurrentPlayer.AttributePoints != 0)
+            {
+                _gameSession.CurrentPlayer.Wisdom++;
+                _gameSession.CurrentPlayer.AttributePoints--;
+            }
+        }
+        private void OnClick_addInt(object sender, RoutedEventArgs e)
+        {
+            if (_gameSession.CurrentPlayer.AttributePoints != 0)
+            {
+                _gameSession.CurrentPlayer.Intelligence++;
+                _gameSession.CurrentPlayer.AttributePoints--;
+            }
+        }
+        private void OnClick_addCon(object sender, RoutedEventArgs e)
+        {
+            if (_gameSession.CurrentPlayer.AttributePoints != 0)
+            {
+                _gameSession.CurrentPlayer.Constitution++;
+                _gameSession.CurrentPlayer.AttributePoints--;
+            }
+        }
+        private void OnClick_addCha(object sender, RoutedEventArgs e)
+        {
+            if (_gameSession.CurrentPlayer.AttributePoints != 0)
+            {
+                _gameSession.CurrentPlayer.Charisma++;
+                _gameSession.CurrentPlayer.AttributePoints--;
+            }
+        }
+        private void OnClick_minusStr(object sender, RoutedEventArgs e)
+        {
+            if (_gameSession.CurrentPlayer.Strength > 1)
+            {
+                _gameSession.CurrentPlayer.Strength--;
+                _gameSession.CurrentPlayer.AttributePoints++;
+            }
+        }
+        private void OnClick_minusDex(object sender, RoutedEventArgs e)
+        {
+            if (_gameSession.CurrentPlayer.Dexterity > 1)
+            {
+                _gameSession.CurrentPlayer.Dexterity--;
+                _gameSession.CurrentPlayer.AttributePoints++;
+            }
+        }
+        private void OnClick_minusWis(object sender, RoutedEventArgs e)
+        {
+            if (_gameSession.CurrentPlayer.Wisdom > 1)
+            {
+                _gameSession.CurrentPlayer.Wisdom--;
+                _gameSession.CurrentPlayer.AttributePoints++;
+            }
+        }
+        private void OnClick_minusInt(object sender, RoutedEventArgs e)
+        {
+            if (_gameSession.CurrentPlayer.Intelligence > 1)
+            {
+                _gameSession.CurrentPlayer.Intelligence--;
+                _gameSession.CurrentPlayer.AttributePoints++;
+            }
+        }
+        private void OnClick_minusCon(object sender, RoutedEventArgs e)
+        {
+            if (_gameSession.CurrentPlayer.Constitution > 1)
+            {
+                _gameSession.CurrentPlayer.Constitution--;
+                _gameSession.CurrentPlayer.AttributePoints++;
+            }
+        }
+        private void OnClick_minusCha(object sender, RoutedEventArgs e)
+        {
+            if (_gameSession.CurrentPlayer.Charisma > 1)
+            {
+                _gameSession.CurrentPlayer.Charisma--;
+                _gameSession.CurrentPlayer.AttributePoints++;
+            }
+        }
+
+        private void OnSellect_female(object sender, RoutedEventArgs e)
+        {
+            _gameSession.CurrentPlayer.Sex = "Female";
+            _gameSession.CurrentPlayer.Charisma += 2;
+            _gameSession.CurrentPlayer.Dexterity++;
+            _gameSession.CurrentPlayer.Wisdom++;
+            SexRadioButtonSelect.Visibility = Visibility.Collapsed;
+            RaceRadioButtonSelect.Visibility = Visibility.Visible;
+        }
+        private void OnSellect_male(object sender, RoutedEventArgs e)
+        {
+            _gameSession.CurrentPlayer.Sex = "Male";
+            _gameSession.CurrentPlayer.Strength += 2;
+            _gameSession.CurrentPlayer.Constitution += 2;
+            SexRadioButtonSelect.Visibility = Visibility.Collapsed;
+            RaceRadioButtonSelect.Visibility = Visibility.Visible;
+        }
+
+
+        private void Unsellect_female(object sender, RoutedEventArgs e)
+        {
+
+            _gameSession.CurrentPlayer.Charisma -= 2;
+            _gameSession.CurrentPlayer.Dexterity--;
+            _gameSession.CurrentPlayer.Wisdom--;
+
+            while (_gameSession.CurrentPlayer.Charisma < 1 || _gameSession.CurrentPlayer.Dexterity < 1 || _gameSession.CurrentPlayer.Wisdom < 1)
+            {
+                if (_gameSession.CurrentPlayer.Charisma < 1)
+                {
+                    _gameSession.CurrentPlayer.Charisma++;
+                    _gameSession.CurrentPlayer.AttributePoints--;
+                }
+                if (_gameSession.CurrentPlayer.Dexterity < 1)
+                {
+                    _gameSession.CurrentPlayer.Dexterity++;
+                    _gameSession.CurrentPlayer.AttributePoints--;
+                }
+                if (_gameSession.CurrentPlayer.Wisdom < 1)
+                {
+                    _gameSession.CurrentPlayer.Wisdom++;
+                    _gameSession.CurrentPlayer.AttributePoints--;
+                }
+                // add a function to test all and minus if ap < 0
+
+            }
+        }
+        private void Unsellect_male(object sender, RoutedEventArgs e)
+        {
+
+            _gameSession.CurrentPlayer.Strength -= 2;
+            _gameSession.CurrentPlayer.Constitution -= 2;
+        }
+
+        private void OnSellect_human(object sender, RoutedEventArgs e)
+        {
+            _gameSession.CurrentPlayer.Race = "Human";
+            RaceRadioButtonSelect.Visibility = Visibility.Collapsed;
+            AttributePointAssignment.Visibility = Visibility.Visible;
+
+        }
+        private void OnSellect_elf(object sender, RoutedEventArgs e)
+        {
+
+
+            _gameSession.CurrentPlayer.Race = "Elf";
+            RaceRadioButtonSelect.Visibility = Visibility.Collapsed;
+            AttributePointAssignment.Visibility = Visibility.Visible;
+        }
+
+        private void OnSellect_dwarf(object sender, RoutedEventArgs e)
+        {
+
+
+            _gameSession.CurrentPlayer.Race = "Dwarf";
+            RaceRadioButtonSelect.Visibility = Visibility.Collapsed;
+            AttributePointAssignment.Visibility = Visibility.Visible;
+        }
+        private void OnSellect_hobbit(object sender, RoutedEventArgs e)
+        {
+            _gameSession.CurrentPlayer.Race = "Hobbit";
+            RaceRadioButtonSelect.Visibility = Visibility.Collapsed;
+            AttributePointAssignment.Visibility = Visibility.Visible;
+        }
+
+        private void OnSellect_troll(object sender, RoutedEventArgs e)
+        {
+            _gameSession.CurrentPlayer.Race = "Troll";
+            RaceRadioButtonSelect.Visibility = Visibility.Collapsed;
+            AttributePointAssignment.Visibility = Visibility.Visible;
+        }
+        private void OnSellect_goblin(object sender, RoutedEventArgs e)
+        {
+            _gameSession.CurrentPlayer.Race = "Goblin";
+            RaceRadioButtonSelect.Visibility = Visibility.Collapsed;
+            AttributePointAssignment.Visibility = Visibility.Visible;
+        }
+
+        private void Unsellect_human(object sender, RoutedEventArgs e)
+        {
+
+
+        }
+        private void Unsellect_elf(object sender, RoutedEventArgs e)
+        {
+
+
+        }
+        private void Unsellect_dwarf(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void Unsellect_hobbit(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void Unsellect_troll(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void Unsellect_goblin(object sender, RoutedEventArgs e)
+        {
+
+        }
+    }
+}

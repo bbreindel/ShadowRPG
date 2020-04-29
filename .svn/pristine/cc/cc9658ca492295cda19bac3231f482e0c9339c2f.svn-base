@@ -1,0 +1,195 @@
+﻿using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+
+namespace GameEngine.GameModels
+{
+    #region Properties
+    public class Player : LivingEntity
+    {
+        private int _experiencePoints;
+        private string _characterClass;
+        private int _intelligence;
+        private int _strength;
+        private int _wisdom;
+        private int _constitution;
+        private int _dexterity;
+        private int _charisma;
+        private int _attributePoints;
+        private string _sex;
+        private string _race;
+        private int _maxAttributePoints;
+
+
+        public string CharacterClass
+        {
+            get { return _characterClass; }
+            set
+            {
+                _characterClass = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Sex
+        {
+            get { return _sex; }
+            set
+            {
+                _sex = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Race
+        {
+            get { return _race; }
+            set
+            {
+                _race = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int Strength
+        {
+            get { return _strength; }
+            set
+            {
+                _strength = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int Intelligence
+        {
+            get { return _intelligence; }
+            set
+            {
+                _intelligence = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int Wisdom
+        {
+            get { return _wisdom; }
+            set
+            {
+                _wisdom = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int Constitution
+        {
+            get { return _constitution; }
+            set
+            {
+                _constitution = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int Dexterity
+        {
+            get { return _dexterity; }
+            set
+            {
+                _dexterity = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int Charisma
+        {
+            get { return _charisma; }
+            set
+            {
+                _charisma = value;
+                OnPropertyChanged();
+            }
+        }
+        public int AttributePoints
+        {
+            get { return _attributePoints; }
+            set
+            {
+                _attributePoints = value;
+                OnPropertyChanged();
+            }
+        }
+        public int MaxAttributePoints
+        {
+            get { return _maxAttributePoints; }
+            set
+            {
+                _maxAttributePoints = value;
+                OnPropertyChanged();
+            }
+        }
+        public int ExperiencePoints
+        {
+            get { return _experiencePoints; }
+            private set 
+            {
+                _experiencePoints = value;
+                OnPropertyChanged();
+
+                SetLevelAndMaximumHitPoints();
+            }
+        }
+
+        public ObservableCollection<QuestStatus> Quests { get; }
+        public ObservableCollection<Recipe> Recipes { get; }
+
+        #endregion
+
+        public event EventHandler OnLeveledUp;
+
+        public Player(string name, string characterClass, int experiencePoints,
+                      int maximumHitPoints, int currentHitPoints, int gold, int strength, int intelligence, int wisdom, int constitution, int dexterity, int charisma, int attributePoints) :
+            base(name, maximumHitPoints, currentHitPoints, gold)
+        {
+            CharacterClass = characterClass;
+            ExperiencePoints = experiencePoints;
+            Strength = strength;
+            Intelligence = intelligence;
+            Wisdom = wisdom;
+            Constitution = constitution;
+            Dexterity = dexterity;
+            Charisma = charisma;
+            AttributePoints = attributePoints;
+            MaxAttributePoints = attributePoints;
+
+            Quests = new ObservableCollection<QuestStatus>();
+            Recipes = new ObservableCollection<Recipe>();
+        }
+
+        public void AddExperience(int experiencePoints)
+        {
+            ExperiencePoints += experiencePoints;
+        }
+        public void LearnRecipe(Recipe recipe)
+        {
+            if (!Recipes.Any(r => r.ID == recipe.ID))
+            {
+                Recipes.Add(recipe);
+            }
+        }
+
+        private void SetLevelAndMaximumHitPoints()
+        {
+            int originalLevel = Level;
+
+            Level = (ExperiencePoints / 100) + 1;
+
+            if (Level != originalLevel)
+            {
+                MaximumHitPoints = Level * 10;
+
+                OnLeveledUp?.Invoke(this, System.EventArgs.Empty);
+            }
+        }
+    }
+}

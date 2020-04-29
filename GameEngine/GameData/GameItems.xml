@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<GameItems>
+  <Weapons>
+    <Weapon ID="1001" Name="Pointy stick" BuyPrice="1" SellPrice="0" Durability="100" MinimumDamage="1" MaximumDamage="2"/>
+    <Weapon ID="1002" Name="Wood sword" BuyPrice="5" SellPrice="2" Durability="100"  MinimumDamage="1" MaximumDamage="3"/>
+    <Weapon ID="1003" Name="Rusty sword" BuyPrice="10" SellPrice="4" Durability="100"  MinimumDamage="2" MaximumDamage="4"/>
+    <Weapon ID="1004" Name="Bronze sword" BuyPrice="20" SellPrice="7" Durability="100"  MinimumDamage="3" MaximumDamage="6"/>
+    <Weapon ID="1005" Name="Steel sword" BuyPrice="50" SellPrice="20" Durability="100"  MinimumDamage="10" MaximumDamage="20"/>
+    <Weapon ID="2001" Name="Snake fang" BuyPrice="1" SellPrice="0" Durability="100" MinimumDamage="1" MaximumDamage="2"/>
+    <Weapon ID="2002" Name="Rat claw" BuyPrice="1" SellPrice="0" Durability="100" MinimumDamage="1" MaximumDamage="2"/>
+    <Weapon ID="2003" Name="Spider fang" BuyPrice="1" SellPrice="0" Durability="100" MinimumDamage="1" MaximumDamage="4"/>
+  </Weapons>
+  <HealingItems>
+    <HealingItem ID="3001" Name="Granola bar"  BuyPrice="5" SellPrice="2" Durability="0" HitPointsToHeal="2"/>
+  </HealingItems>
+  <MiscellaneousItems>
+    <MiscellaneousItem ID="4001" Name="Oats"  BuyPrice="1" SellPrice="0" Durability="0" />
+    <MiscellaneousItem ID="4002" Name="Honey"  BuyPrice="2" SellPrice="1" Durability="0" />
+    <MiscellaneousItem ID="4003" Name="Raisins"  BuyPrice="2" SellPrice="1" Durability="0" />
+    <MiscellaneousItem ID="9001" Name="Snake fang"  BuyPrice="2" SellPrice="1" Durability="0" />
+    <MiscellaneousItem ID="9002" Name="Snakeskin"  BuyPrice="4" SellPrice="2" Durability="0" />
+    <MiscellaneousItem ID="9003" Name="Rat tail"  BuyPrice="2" SellPrice="1" Durability="0" />
+    <MiscellaneousItem ID="9004" Name="Rat fur"  BuyPrice="4" SellPrice="2" Durability="0" />
+    <MiscellaneousItem ID="9005" Name="Spider fang"  BuyPrice="2" SellPrice="1" Durability="0" />
+    <MiscellaneousItem ID="9006" Name="Spider silk"  BuyPrice="4" SellPrice="2" Durability="0" />
+  </MiscellaneousItems>
+</GameItems>

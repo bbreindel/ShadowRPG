@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using GameEngine.GameModels;
+
+namespace GameEngine.ViewModels
+{
+    class GameSession
+    {
+        Player CurrentPlayer { get; set; }
+
+        public GameSession()
+        {
+            CurrentPlayer = new Player();
+            CurrentPlayer.Name = "Shadow";
+            CurrentPlayer.Gold = 100000;
+        }
+
+    }
+}

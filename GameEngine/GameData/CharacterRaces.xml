@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CharacterRaces RootImagePath="/Images/CharacterRaces/">
+  <Race ID="1" Name="Human"  ImageName="Human.png">
+  	<Pro><![CDATA[This is a Pro, Ugly Human]]></Pro>
+	<Con><![CDATA[This is a Con Human]]></Con>
+    <Description><![CDATA[You are a Bland Human]]></Description>
+  </Race>
+  <Race ID="2" Name="Elf"  ImageName="Elf.jpg">
+  	<Pro><![CDATA[This is a Pro, Ugly Elf]]></Pro>
+	<Con><![CDATA[This is a Con Elf]]></Con>
+    <Description><![CDATA[You are a Skinny Elf]]></Description>
+  </Race>
+  <Race ID="3" Name="Dwarf"  ImageName="Dwarf.gif">
+  	<Pro><![CDATA[This is a Pro, Ugly Dwarf]]></Pro>
+	<Con><![CDATA[This is a Con Dwarf]]></Con>
+    <Description><![CDATA[You are a Fat Dwarf]]></Description>
+  </Race>
+  <Race ID="4" Name="Hobbit"  ImageName="Hobbit.jpg">
+  	<Pro><![CDATA[This is a Pro, Ugly Hobbit]]></Pro>
+	<Con><![CDATA[This is a Con Hobbit]]></Con>
+    <Description><![CDATA[You are a Lazy Hobbit]]></Description>
+  </Race>
+  <Race ID="5" Name="Troll"  ImageName="Troll.jpg" >
+	<Pro><![CDATA[This is a Pro, Ugly Troll]]></Pro>
+	<Con><![CDATA[This is a Con Troll]]></Con>
+    <Description><![CDATA[You are a Tall, Ugly Troll]]></Description>
+  </Race>
+  <Race ID="6" Name="Goblin"  ImageName="Goblin.jpg">
+  	<Pro><![CDATA[This is a Pro, Ugly Goblin]]></Pro>
+	<Con><![CDATA[This is a Con Goblin]]></Con>
+    <Description><![CDATA[Wimpy Goblin]]></Description>
+  </Race>
+</CharacterRaces>
