@@ -9,9 +9,11 @@
         d:DataContext="{d:DesignInstance viewModels:GameSession}"
         WindowStartupLocation="CenterOwner"
         FontSize="11pt"
-        Title="GameMenu" Height="400" Width="300">
+        Title="GameMenu" Height="480" Width="300">
     <Grid >
             <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="40"/>
@@ -43,6 +45,11 @@
                 Click="OnClick_Close"/>
 
         <Button Grid.Row="7" 
+                Width="200"
+                Content="Game Options"
+                Click="OnClick_Close"/>
+
+        <Button Grid.Row="9" 
                 Width="200"
                 Content="Exit Game"
                 Click="ExitGame"/>

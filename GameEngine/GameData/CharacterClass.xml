@@ -1,32 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<CharacterClasses RootImagePath="/Images/CharacterRaces/">
-  <Class ID="1" Name="Warrior"  ImageName="Human.png">
-  	<Pro><![CDATA[This is a Pro, Ugly Human]]></Pro>
+<CharacterClasses RootImagePath="/Images/CharacterClasses/">
+  <Class ID="1" Name="Warrior"  ImageName="Warrior.png">
+  	<Pro><![CDATA[This is a Pro, Ugly Warrior]]></Pro>
 	<Con><![CDATA[This is a Con Human]]></Con>
     <Description><![CDATA[You are a Bland Human]]></Description>
   </Class>
-  <Class ID="2" Name="Thief"  ImageName="Elf.jpg">
-  	<Pro><![CDATA[This is a Pro, Ugly Elf]]></Pro>
+  <Class ID="2" Name="Thief"  ImageName="Thief.png">
+  <Pro><![CDATA[This is a Pro, Ugly Thief]]></Pro>
 	<Con><![CDATA[This is a Con Elf]]></Con>
     <Description><![CDATA[You are a Skinny Elf]]></Description>
   </Class>
-  <Class ID="3" Name="Mage"  ImageName="Dwarf.gif">
-  	<Pro><![CDATA[This is a Pro, Ugly Dwarf]]></Pro>
+  <Class ID="3" Name="Mage"  ImageName="Mage.gif">
+  	<Pro><![CDATA[This is a Pro, Ugly Mage]]></Pro>
 	<Con><![CDATA[This is a Con Dwarf]]></Con>
     <Description><![CDATA[You are a Fat Dwarf]]></Description>
   </Class>
-  <Class ID="4" Name="Claric"  ImageName="Hobbit.jpg">
-  	<Pro><![CDATA[This is a Pro, Ugly Hobbit]]></Pro>
+  <Class ID="4" Name="Cleric"  ImageName="Cleric.jpg">
+  	<Pro><![CDATA[This is a Pro, Ugly Cleric]]></Pro>
 	<Con><![CDATA[This is a Con Hobbit]]></Con>
     <Description><![CDATA[You are a Lazy Hobbit]]></Description>
   </Class>
-  <Class ID="5" Name="Archer"  ImageName="Troll.jpg" >
-	<Pro><![CDATA[This is a Pro, Ugly Troll]]></Pro>
+  <Class ID="5" Name="Archer"  ImageName="Archer.jpg" >
+	<Pro><![CDATA[This is a Pro, Ugly Archer]]></Pro>
 	<Con><![CDATA[This is a Con Troll]]></Con>
     <Description><![CDATA[You are a Tall, Ugly Troll]]></Description>
   </Class>
-  <Class ID="6" Name="Druid"  ImageName="Goblin.jpg">
-  	<Pro><![CDATA[This is a Pro, Ugly Goblin]]></Pro>
+  <Class ID="6" Name="Druid"  ImageName="Druid.jpg">
+  	<Pro><![CDATA[This is a Pro, Ugly Druid]]></Pro>
 	<Con><![CDATA[This is a Con Goblin]]></Con>
     <Description><![CDATA[Wimpy Goblin]]></Description>
   </Class>

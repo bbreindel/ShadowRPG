@@ -49,6 +49,33 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Images\CharacterClasses\%2832%29 Tumblr - #forests #tumblr.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\CharacterClasses\Archer.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\CharacterClasses\bf01782e-dbdf-459d-8337-eab4822e0a11.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\CharacterClasses\Cleric.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\CharacterClasses\Druid.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\CharacterClasses\Mage.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\CharacterClasses\Thief.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\CharacterClasses\Warrior.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\CharacterClasses\Warrior2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Images\CharacterRaces\Dwarf.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -71,9 +98,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Images\CharacterRaces\Hobbit.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Images\CharacterRaces\Home.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Images\CharacterRaces\Human.png">
@@ -136,6 +160,10 @@
     <None Update="Music\Tina.MP3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Images\CharacterClasses\" />
   </ItemGroup>
 
 </Project>
