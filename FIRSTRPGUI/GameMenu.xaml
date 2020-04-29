@@ -45,6 +45,6 @@
         <Button Grid.Row="7" 
                 Width="200"
                 Content="Exit Game"
-                Click="OnClick_Close"/>
+                Click="ExitGame"/>
     </Grid>
 </Window>

@@ -112,6 +112,7 @@ namespace FIRSTRPGUI
             {
                 Owner = this,
                 DataContext = _gameSession,
+                SetMW = this,
                 //mPlayer = mediaPlayer    
                 };
                 gamemenu.ShowDialog();

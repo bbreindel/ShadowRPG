@@ -26,10 +26,17 @@ namespace FIRSTRPGUI
 
         public GameSession Session => DataContext as GameSession;
         private readonly PopupQuestionArgs PopupQues = new PopupQuestionArgs();
+        Window mW;
         //public MediaPlayer mPlayer => MP as MediaPlayer();
         public GameMenu()
         {
             InitializeComponent();
+        }
+
+        public Window SetMW
+        {
+            get { return mW; }
+            set { mW = value; }
         }
 
 
@@ -44,10 +51,10 @@ namespace FIRSTRPGUI
 
             if (ResetAns)
             {
-               // mediaPlayer.Stop();
+                //mW.mediaPlayer.Stop();
                 MainWindow window2 = new MainWindow();
                 window2.Show();
-                Close();
+                mW.Close();
             }
                  
 
@@ -55,17 +62,8 @@ namespace FIRSTRPGUI
 
         private void ExitGame(object sender, RoutedEventArgs e)
         {
-            bool ResetAns = PopupQues.ResetQuestion();
 
-            if (ResetAns)
-            {
-                // mediaPlayer.Stop();
-                MainWindow window2 = new MainWindow();
-                window2.Show();
-                Close();
-               
-            }
-
+                mW.Close();   
 
         }
 
