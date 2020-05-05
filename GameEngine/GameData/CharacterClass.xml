@@ -4,6 +4,9 @@
   	<Pro><![CDATA[This is a Pro, Ugly Warrior]]></Pro>
 	<Con><![CDATA[This is a Con Human]]></Con>
     <Description><![CDATA[You are a Bland Human]]></Description>
+	<StartWeapon></StartWeapon>
+	<StartArmor></StartArmor>
+	<StartItem></StartItem>
   </Class>
   <Class ID="2" Name="Thief"  ImageName="Thief.png">
   <Pro><![CDATA[This is a Pro, Ugly Thief]]></Pro>

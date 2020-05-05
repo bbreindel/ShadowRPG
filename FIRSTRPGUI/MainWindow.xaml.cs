@@ -34,6 +34,7 @@ namespace FIRSTRPGUI
             new Dictionary<Key, Action>();
 
         private readonly PopupQuestionArgs PopupQues = new PopupQuestionArgs();
+        
 
         public event EventHandler MediaEnded;
 
@@ -432,13 +433,19 @@ namespace FIRSTRPGUI
         private void CreateCharacterNextStep(object sender, RoutedEventArgs e)
         {
 
-            
+
+
             if (SexRadioButtonSelect.IsVisible)
             {
 
-                bool Ans = PopupQues.CharacterCreateContinue(_gameSession.CurrentPlayer.Sex);
+                //  bool Ans = PopupQues.CharacterCreateContinue(_gameSession.CurrentPlayer.Sex);
 
-                if (Ans)
+                YesNoWindow message =
+    new YesNoWindow("Confirm Delete", "Are you sure you want to delete this account?");
+                message.Owner = Window.GetWindow(this);
+                message.ShowDialog();
+
+                if (message.ClickedYes)
                 {
                     CreateRaceButtons();
                     SexRadioButtonSelect.Visibility = Visibility.Collapsed;
@@ -449,9 +456,14 @@ namespace FIRSTRPGUI
             }
             else if (RaceRadioButtonSelect.IsVisible)
             {
-                bool Ans = PopupQues.CharacterCreateContinue(_gameSession.CurrentPlayer.Race);
+                //bool Ans = PopupQues.CharacterCreateContinue(_gameSession.CurrentPlayer.Race);
+                YesNoWindow message =
+    new YesNoWindow("Confirm Delete", "Are you sure you want to delete this account?");
+                message.Owner = Window.GetWindow(this);
+                message.ShowDialog();
 
-                if (Ans)
+
+                if (message.ClickedYes)
                 {
                     CreateClassButtons();
                     RaceRadioButtonSelect.Visibility = Visibility.Collapsed;
@@ -462,9 +474,14 @@ namespace FIRSTRPGUI
             }
             else if (ClassRadioButtonSelect.IsVisible)
             {
-                bool Ans = PopupQues.CharacterCreateContinue(_gameSession.CurrentPlayer.CharacterClass);
+                // bool Ans = PopupQues.CharacterCreateContinue(_gameSession.CurrentPlayer.CharacterClass);
 
-                if (Ans)
+                YesNoWindow message =
+    new YesNoWindow("Confirm Delete "," Are you sure you want to delete this account?");
+                message.Owner = Window.GetWindow(this);
+                message.ShowDialog();
+
+                if (message.ClickedYes)
                 {
                     ClassRadioButtonSelect.Visibility = Visibility.Collapsed;
                     AttributePointAssignment.Visibility = Visibility.Visible;
@@ -611,9 +628,12 @@ namespace FIRSTRPGUI
 
         private void ResetGame(object sender, RoutedEventArgs e)
         {
-            bool ResetAns = PopupQues.ResetQuestion();
+            YesNoWindow message =
+new YesNoWindow("Confirm Delete ", " Are you sure you want to delete this account?");
+            message.Owner = Window.GetWindow(this);
+            message.ShowDialog();
 
-            if (ResetAns)
+            if (message.ClickedYes)
             {
                 mediaPlayer.Stop();
                 MainWindow window2 = new MainWindow();
@@ -658,9 +678,12 @@ namespace FIRSTRPGUI
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            bool ResetAns = PopupQues.ExitQuestion();
+            YesNoWindow message =
+            new YesNoWindow("Confirm Delete ", " Are you sure you want to delete this account?");
+            message.Owner = Window.GetWindow(this);
+            message.ShowDialog();
 
-            if (ResetAns)
+            if (message.ClickedYes)
             {
               
             }
